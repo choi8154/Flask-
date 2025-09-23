@@ -18,7 +18,7 @@ class BookList(MethodView):
         return books
 
     @book_blp.arguments(BookSchema) # 요청 JSON을 BookSchema로 검증/파싱
-    @book_blp.response(201, BookSchema) # 요청 JSON을 BookSchema로 검증/파싱
+    @book_blp.response(201, BookSchema) # 응답을 BookSchema로 직렬화
     def post(self, new_data): # 파싱된 데이터가 new_data로 들어옴
         new_data['id'] = len(books) + 1
         books.append(new_data)
