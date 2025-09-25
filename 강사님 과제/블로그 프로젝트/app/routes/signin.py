@@ -24,8 +24,9 @@ class SignIn(MethodView):
             return jsonify({"error":"존재하지 않는 아이디 입니다."}), 404
         
         if user.password != data["password"]:
-            db.close
+            db.close()
             return jsonify({"error":"비밀번호가 올바르지 않습니다."}), 401
+            
         
         # 로그인 성공사 세션에 저장
         session["user_id"] = user.id
@@ -35,5 +36,10 @@ class SignIn(MethodView):
         db.close()
 
         return redirect(url_for("blog.blog"))
-    
+
+@signin_bp.route("/logout", methods=["GET"]) 
+def logout():
+    session.clear() # 로그아웃 시 세션 클리어
+    return redirect(url_for("signin.sign_in"))
+
 signin_bp.add_url_rule("/", view_func=SignIn.as_view("sign_in"))

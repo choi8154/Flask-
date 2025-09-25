@@ -20,6 +20,9 @@ class CreatePost(MethodView):
         # 로그인된 유저 정보 가져오기 (예시: 세션에 저장했다고 가정)
         user_id = session.get("user_id")
 
+        if not user_id: # 세션에 아이디가 없으면 로그인 화면으로 돌아감
+            return redirect(url_for("signin.sign_in"))
+        
         new_post = Post(
             user_id=user_id,
             category=data["category"],
