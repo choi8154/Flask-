@@ -1,0 +1,44 @@
+/* 상단 좌측 로그아웃 버튼 */
+.logout-link {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  color: #e03131;          /* 빨간 텍스트 */
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 1000;
+}
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+/* 블로그 박스는 좀 더 넓게 */
+.blog-box {
+  width: 960px;            /* 기본 600~700에서 확장 */
+  max-width: 95vw;
+}
+
+/* 포스트 목록을 넓고 시원하게 */
+.post-list .post-item {
+  padding: 1.1rem 1rem;
+  transition: box-shadow .15s ease, transform .15s ease, background-color .15s ease;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.post-list .post-item:hover {
+  background-color: #f8fbff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* 제목 영역은 한 줄 말줄임 처리 */
+.post-title {
+  color: #1f2937;
+  text-decoration: none;
+  max-width: 78%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post-title:hover {
+  text-decoration: underline;
+}

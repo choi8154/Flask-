@@ -1,0 +1,1 @@
+정적 파일 (CSS, JS, IMAGE)
