@@ -15,6 +15,11 @@ class Blog(MethodView):
         db.close()
         return render_template("blog.html", posts=posts)
     
+    ##################블로그 검색기능###################
+
+
+
+
 
 # 블루프린트 등록
 blog_bp.add_url_rule("/", view_func=Blog.as_view("blog"))

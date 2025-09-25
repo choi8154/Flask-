@@ -1,34 +1,151 @@
+/* 배경: 산뜻한 그레이 톤, 살짝 그러데이션 */
 body {
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  background: radial-gradient(1200px 600px at 15% -10%, #ffffff 0%, #f7faff 35%, #f2f4f8 100%);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-family: "Pretendard", sans-serif;
-  padding-top: 60px; /* 상단 여백: 로그아웃 링크와 겹치지 않게 약간 늘림 */
+  font-family: "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+  padding-top: 72px; /* 상단 여백 넉넉히 */
+  color: #18212f;
 }
 
+/* 카드 컨테이너: 더 와이드, 여백 넉넉, 부드러운 그림자 */
 .container-box {
-  background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 700px;
+  background: #ffffff;
+  padding: 2.25rem 2.75rem;
+  border-radius: 16px;
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.06),
+    0 2px 6px rgba(16, 24, 40, 0.04);
+  width: 960px;         /* 더 와이드 */
+  max-width: 95vw;
+  border: 1px solid rgba(16, 24, 40, 0.06);
 }
 
+/* 타이틀: 굵고 또렷하게 */
 h1, h2 {
-  text-align: center;
-  margin-bottom: 1.25rem;
+  text-align: left;
+  margin: 0 0 1rem 0;
   font-weight: 800;
-  color: #1f2937;
+  letter-spacing: -0.02em;
+  color: #0f172a; /* slate-900 */
 }
 
+/* 서브 타이틀이나 설명 텍스트가 있다면 */
+.subtitle {
+  margin-top: .25rem;
+  color: #667085; /* 중간 회색 */
+  font-weight: 500;
+}
+
+/* 버튼: post.css 느낌에 맞춘 인디고 계열 */
 .btn-custom {
-  background: #66a6ff;
-  border: none;
+  background: #4f46e5;     /* indigo-600 */
+  border: 1px solid transparent;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
+  padding: .625rem 1rem;
+  border-radius: 10px;
+  transition: transform .06s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.22);
 }
 .btn-custom:hover {
-  background: #4d8be0;
+  background: #4338ca;     /* indigo-700 */
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.28);
+}
+.btn-custom:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.18);
+}
+
+/* 버튼의 옅은 버전이 필요할 때 */
+.btn-ghost {
+  background: #ffffff;
+  color: #4f46e5;
+  border: 1px solid rgba(79, 70, 229, 0.18);
+}
+.btn-ghost:hover {
+  background: rgba(79, 70, 229, 0.06);
+  border-color: rgba(79, 70, 229, 0.28);
+}
+
+/* 링크 컬러 통일 */
+a {
+  color: #374151; /* gray-700 */
+  text-decoration: none;
+}
+a:hover {
+  color: #111827; /* gray-900 */
+  text-decoration: underline;
+}
+
+/* 리스트/카드류에 쓰일 때 살짝의 패딩과 보더 */
+.list-card {
+  border: 1px solid rgba(16, 24, 40, 0.06);
+  border-radius: 14px;
+  background: #fff;
+  padding: 1rem;
+}
+
+/* 폼 공통 */
+.form-control, input, textarea, select {
+  border-radius: 10px !important;
+  border: 1px solid rgba(16, 24, 40, 0.12) !important;
+  box-shadow: none !important;
+}
+.form-control:focus, input:focus, textarea:focus, select:focus {
+  border-color: #4f46e5 !important;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12) !important;
+}
+
+/* 섹션 간 여백 */
+.section-gap {
+  margin-top: 1.25rem;
+}
+
+/* 작은 뱃지 */
+.badge-soft {
+  display: inline-block;
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  background: #eef2ff; /* indigo-50 */
+  color: #3730a3;      /* indigo-800 */
+  font-weight: 700;
+  font-size: .8rem;
+}
+/* === 버튼: 모노톤(회/검정)으로 오버라이드 === */
+.btn-custom {
+  background: #4f4f4f;            /* 거의-검정 (gray-900) */
+  border: 1px solid transparent;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(17, 24, 39, 0.22);
+}
+.btn-custom:hover {
+  background: #8d8d8d;            /* 더 짙게 */
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(17, 24, 39, 0.28);
+}
+.btn-custom:active {
+  background: #111827;
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(17, 24, 39, 0.18);
+}
+
+/* 라이트(고스트) 버튼도 모노톤으로 */
+.btn-ghost {
+  background: #ffffff;
+  color: #374151;                 /* gray-700 */
+  border: 1px solid rgba(154, 154, 154, 0.28); /* gray-700 28% */
+}
+.btn-ghost:hover {
+  background: #f3f4f6;            /* gray-100 */
+  border-color: rgba(55, 65, 81, 0.45);
+  color: #777777;                 /* gray-900 */
+}
+.btn-ghost:active {
+  background: #e5e7eb;            /* gray-200 */
+  border-color: rgba(17, 24, 39, 0.55);
 }

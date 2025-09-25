@@ -1,3 +1,4 @@
+<!-- app/templates/post.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,25 +9,63 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/post.css') }}">
 </head>
 <body>
-  <!-- 상단 메뉴 -->
-  <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-    <a href="{{ url_for('blog.blog') }}" class="btn btn-link">← 블로그 메인</a>
-    <a href="{{ url_for('signin.sign_in') }}" class="text-danger">로그아웃</a>
+  <div class="page-wrap">
+    <header class="post-header container-narrow">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <a href="{{ url_for('blog.blog') }}" class="btn btn-custom">블로그 메인</a>
+    </header>
+
+    <main class="container-narrow">
+      <article class="post-card shadow-sm">
+        <div class="post-meta">
+          <span>카테고리 · {{ post.category or "없음" }}</span>
+          <span>작성자 ID · {{ post.user_id }}</span>
+          <span>작성일 · {{ post.create_at.strftime("%Y-%m-%d %H:%M") if post.create_at else "" }}</span>
+
+          {# ✅ 세션의 user_id와 글의 user_id가 같으면 수정/삭제 표시 #}
+          {% if session.get('user_id') == post.user_id %}
+            <span class="owner-actions">
+              <a href="#" id="editLink" class="text-primary">수정</a>
+              <a href="#" id="deleteLink" class="text-danger ms-3">삭제</a>
+            </span>
+          {% endif %}
+        </div>
+
+        <!-- 본문 -->
+        <div id="viewMode" class="post-content">
+          {{ post.content }}
+        </div>
+
+        <!-- 수정 폼 (기본 숨김) -->
+        {% if session.get('user_id') == post.user_id %}
+        <form id="editForm" class="edit-form" style="display:none;">
+          <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input type="text" class="form-control" id="editTitle" value="{{ post.title }}" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">카테고리</label>
+            <input type="text" class="form-control" id="editCategory" value="{{ post.category or '' }}" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">내용</label>
+            <textarea class="form-control" id="editContent" rows="8">{{ post.content }}</textarea>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="button" id="saveBtn" class="btn btn-custom">저장</button>
+            <button type="button" id="cancelBtn" class="btn btn-outline-secondary">취소</button>
+          </div>
+        </form>
+        {% endif %}
+      </article>
+    </main>
   </div>
 
-  <div class="container mt-4">
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h2 class="card-title">{{ post.title }}</h2>
-        <p class="text-muted mb-2">
-          카테고리: {{ post.category if post.category else "없음" }} |
-          작성자 ID: {{ post.user_id }} |
-          작성일: {{ post.create_at.strftime("%Y-%m-%d %H:%M") if post.create_at else "" }}
-        </p>
-        <hr>
-        <p class="card-text">{{ post.content }}</p>
-      </div>
-    </div>
-  </div>
+  {% if session.get('user_id') == post.user_id %}
+  <script>
+    window.POST_ID = {{ post.id }};
+  </script>
+  <script src="{{ url_for('static', filename='js/post.js') }}"></script>
+  {% endif %}
 </body>
 </html>

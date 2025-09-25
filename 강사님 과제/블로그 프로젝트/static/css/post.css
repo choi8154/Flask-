@@ -1,19 +1,144 @@
+/* 페이지 베이스 */
 body {
-  background-color: #f8f9fa;
+  background: #f4f6f8;
+  font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #222;
+  margin: 0;
 }
 
-.card {
-  max-width: 800px;
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 블로그 스타일과 매칭: 960px 와이드 + 95vw 세이프 */
+.container-narrow {
+  width: 960px;
+  max-width: 95vw;
   margin: 0 auto;
-  border-radius: 12px;
+  padding: 24px 0 48px;
 }
 
-.card-title {
-  font-size: 1.8rem;
-  font-weight: bold;
+/* 상단 헤더 (제목 왼쪽, 버튼 오른쪽) */
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
 }
 
-.card-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
+.post-title {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0;
+  color: #111;
+  letter-spacing: -0.02em;
+  /* 블로그 리스트의 .post-title 톤과 유사 */
+}
+
+/* 카드: 넓고 시원하게, 내용 없을 때도 하얀 여백 충분히 */
+.post-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+  min-height: 68vh;                /* 빈 화면도 보기 좋게 */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow .15s ease, transform .15s ease, background-color .15s ease;
+}
+.post-card:hover {
+  background-color: #fdfefe;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* 메타 정보(블로그 hover/보더 톤과 유사) */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 20px 22px 12px;
+  color: #6b7280;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #eef2f7;
+}
+.post-meta span::before {
+  content: "•";
+  margin-right: 8px;
+  color: #c0c6cf;
+}
+.post-meta span:first-child::before {
+  content: "";
+  margin: 0;
+}
+
+/* 본문: 넘치면 내부 스크롤, 여백 넉넉 */
+.post-content {
+  padding: 22px 22px 26px;
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: #1f2937;
+  white-space: pre-wrap;     /* 줄바꿈/공백 유지 */
+  overflow-wrap: anywhere;
+  flex: 1;
+  overflow-y: auto;          /* 내용 길면 스크롤 */
+}
+
+/* 블로그와 동일한 느낌의 버튼 */
+.btn.btn-custom {
+  background: #111827;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: transform .05s ease, box-shadow .2s ease, opacity .2s ease;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.15);
+  text-decoration: none;
+}
+.btn.btn-custom:hover {
+  opacity: .92;
+  transform: translateY(-1px);
+  color: #fff;
+}
+.btn.btn-custom:active {
+  transform: translateY(0);
+}
+
+/* (선택) 로그아웃 텍스트 스타일 - HTML에 넣으면 바로 동일 톤 적용됨 */
+.logout-link {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  color: #e03131;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 1000;
+}
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+/* 반응형 */
+@media (max-width: 576px) {
+  .post-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .post-title {
+    font-size: 1.4rem;
+  }
+  .post-content {
+    padding: 18px;
+  }
+}
+.edit-form {
+  padding: 22px;
+  border-top: 1px solid #eef2f7;
+  background: #fff;
 }
