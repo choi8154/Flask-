@@ -28,7 +28,7 @@ class SignIn(MethodView):
             return jsonify({"error":"비밀번호가 올바르지 않습니다."}), 401
             
         
-        # 로그인 성공사 세션에 저장
+        # 로그인 성공시 세션에 저장
         session["user_id"] = user.id
         session["user_name"] = user.name  
 

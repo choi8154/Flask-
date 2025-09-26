@@ -8,8 +8,13 @@ post_bp = Blueprint("post", __name__, url_prefix="/post")
 
 
 class PostDetail(MethodView):
+
     ##################포스트 내용 페이지 구현###################
     def get(self, post_id):
+        user_id = session.get("user_id")  # 세션에서 사용자 조회
+        if not user_id: # 사용자가 포스트 아이디랑 다를시
+            return redirect(url_for("signin.sign_in"))
+        
         db = SessionLocal()
         post = db.query(Post).filter(Post.id == post_id).first()
         db.close()

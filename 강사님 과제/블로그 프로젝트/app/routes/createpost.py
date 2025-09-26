@@ -10,10 +10,18 @@ cp_bp = Blueprint("cp", __name__, url_prefix="/cp")
 class CreatePost(MethodView):
     ##################포스팅 페이지###################
     def get(self):
+        user_id = session.get("user_id")  # 세션에서 사용자 조회
+        if not user_id: # 사용자가 포스트 아이디랑 다를시
+            return redirect(url_for("signin.sign_in"))
+        
         return render_template("createpost.html")
     
     ##################포스팅###################
     def post(self):
+        user_id = session.get("user_id")  # 세션에서 사용자 조회
+        if not user_id: # 사용자가 포스트 아이디랑 다를시
+            return redirect(url_for("signin.sign_in"))
+        
         db = SessionLocal()
         data = request.get_json()
         
