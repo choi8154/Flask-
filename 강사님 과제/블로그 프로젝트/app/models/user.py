@@ -12,5 +12,6 @@ class User(Base):
     password = Column(String(100), nullable=False)
     email = Column(String(50), nullable=False)
     name = Column(String(50), nullable=False)
+    # boards = relationship("Post", back_populates="author")
     phone = Column(String(50), unique=True, nullable=True)
 ############################################

@@ -11,5 +11,6 @@ class Post(Base):
     category = Column(String(30), nullable=True)
     title = Column(String(200), nullable=False)
     content = Column(String(1000), nullable=False)
+    # author = relationship("User", back_populates="boards")
     create_at = Column(DateTime, server_default=func.now(), nullable=False) #자동으로 시간 생성
 ############################################

@@ -20,7 +20,7 @@ engine = create_engine("mysql+pymysql://root:dain8154@localhost/blogdb")
 
 ############################################
 
-# 세션 생성 : 이걸 사용하여 테이블에 데이터를 넣을 수 있음.
+# 세션 생성 : 이걸 사용하여 테이블에 데이터를 넣을 수 있음. pymysql에서 cur같은거
 SessionLocal = sessionmaker(bind=engine)
 
 #! 순환참조 오류로 밑으로 내려야함.
