@@ -7,6 +7,7 @@ from app.routes.postdt import post_bp
 
 app = Flask(__name__, template_folder="app/templates") # app안에 templates을 넣으면 경로지정을 따라로 해줘야함.
 
+# os.genv : 로 시크릿 키를 로컬파일에 저장
 app.secret_key = "asdlkfjonsdlkjf@askdjofk!@$#$"
 
 app.register_blueprint(signin_bp)

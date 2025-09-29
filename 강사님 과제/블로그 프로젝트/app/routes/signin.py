@@ -32,7 +32,6 @@ class SignIn(MethodView):
         session["user_id"] = user.id
         session["user_name"] = user.name  
 
-        
         db.close()
 
         return redirect(url_for("blog.blog"))
