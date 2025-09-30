@@ -33,6 +33,11 @@ def test_add() -> None:
 >반환 : FAILED test_simple.py::test_add - AssertionError: 계산이 틀림
  
 
+<br>
+<br>
+
+---
+
 # Coverage
 >공식문서 : https://github.com/nedbat/coveragepy?utm_source=chatgpt.com
 
@@ -64,13 +69,18 @@ def test_add() -> None:
 >## 종속성 분리 하여 설치하는 방법
 1. poetry install --no-root --only main : dev group 이 아닌 main 그룹만 설치
 
-# 추가 설명
+## 추가 설명
 - 프로젝트를 git에서 받고 가상환경을 설치할 때 사용하는 방법임.
 - 타인이 git에서 내 프로젝트를 받을 때 용량 문제로 가상환경은 gitignore 해놓음
 - 해당 프로젝트를 받은 사람은 poetry install 를 통해 .toml 과 .lock을 통해서 가상환경을 다시 설치함
 - 이 때 해당 프로젝트까지 toml에 포함되어 라이브러리로 취급됨. 프로젝트까지 라이브러리로 2번 받아버리는거
 - 이 때 자기자신을 제외한 종속성만 받기위해 설정하는 것이 --no-root임.
 
+
+<br>
+<br>
+
+---
 
 # test script
 - 코드 수정, 추가, 생성시 일일이 명령어로 test를 돌리는게 아닌 script를 만들어 해당 파일 실행 시 자동으로 test가 가등하도록함.
@@ -114,6 +124,11 @@ echo "${COLOR_GREEN}ALL tests passed successfully!${COLOR_NC}"
 - 위에서부터 아래로 자동으로 실행되며 오류 검사. 
 3. chmod +x ./test.sh : 실행 권한 부여
 4. ./test.sh : 테스트 실행
+
+<br>
+<br>
+
+---
 
 # Github action script(IC)
 >공식 문서 : https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#on
