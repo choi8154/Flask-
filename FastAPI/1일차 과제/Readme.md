@@ -98,7 +98,10 @@
     - plugins = ["pydantic.mypy"] : mypy의 plugin이 있는 pydentic과 조화롭게 쓰기 위한 설정
     - python_version = 3.13
     - strict = true : 엄격한 설정을 통해 mypy를 강력하게 사용 가능
-2. mypy . : 실행
+```python
+mydict : dict[str, int] = {"STRING", "STRING"}
+```
+2. mypy . : 실행(위 코드 실행시 오류 반환)
 
 
 ## 기타
@@ -119,3 +122,4 @@ print(b)
 a = 123
 reveal_type(a)
 ```
+- literal : 변수에 할당되는 값을 말하는 것
