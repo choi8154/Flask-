@@ -20,6 +20,9 @@
 4. source ~/.zshrc : 추가한 사항 적용
 5. poetry --version : 버전 확인. 버전이 나오면 성공.
 
+6. virtualenvs.in-project true : 디렉터리에 가상환경 생성
+7. poetry env info : 가상환경 확인
+
 <br>
 <br>
 
