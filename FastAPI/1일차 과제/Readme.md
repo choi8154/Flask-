@@ -100,6 +100,9 @@
     - strict = true : 엄격한 설정을 통해 mypy를 강력하게 사용 가능
 ```python
 mydict : dict[str, int] = {"STRING", "STRING"}
+mytuple : tuple[str, str] = ("str","str") # 튜플은 값이 변할 수 없으므로 할당과 값의 개수가 같아야함.
+mytuple2 : tuple[str, str] = ("str", ...) # ...으로 개수를 알 웃 없음을 허용.
+mylist : list[str|int] = [123, "abc"] # str 이거나 int 를 허용
 ```
 2. mypy . : 실행(위 코드 실행시 오류 반환)
 
@@ -123,3 +126,5 @@ a = 123
 reveal_type(a)
 ```
 - literal : 변수에 할당되는 값을 말하는 것
+- mutable : 생성 후 변화 가능
+- imutable : 생성 후 변화 불가능
