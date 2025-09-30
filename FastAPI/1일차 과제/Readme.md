@@ -22,7 +22,8 @@
 
 <br>
 <br>
-<br>
+
+---
 
 # black
 >공식 문서 : https://github.com/psf/black
@@ -31,17 +32,16 @@
 - black . : 기능적인 부분에서 차이가 없지만 명령어 한번으로 코드의 가독성을 높여준다.
 - 쓰는 이유 : 코드 스타일로인해 팀원들간의 마찰을 줄여줌.
 
-
-
 >## black 설치 및 사용 방법
 1. poetry add --group=dev black : poetry 가상환경에 black 설치.
 2. black --version : 설치가 되었는지 확인.
 3. black . 혹은 poetry run black . : black을 사용하여 현재 폴더의 모든 파일의 코드 스타일을 수정.
-4. [tool.black] line-length = 10 : .toml 파일에서 black의 스타일을 수정 할 수 있음.
+    -[tool.black] line-length = 10 : .toml 파일에서 black의 스타일을 수정 할 수 있음.
 
 <br>
 <br>
-<br>
+
+---
 
 # ruff
 >공식 문서 : https://github.com/astral-sh/ruff
@@ -52,8 +52,6 @@
 - formatter란?
 - E401 과 같은 flake8rules 코드로 오류의 종류를 확인 가능.
 - flake8rules 링트 : https://www.flake8rules.com/
-
-
 
 >## ruff 설치 및 사용 방법
 1. poetry add --group=dev ruff : ruff를 가상환경에 설치.
@@ -66,7 +64,8 @@
 
 <br>
 <br>
-<br>
+
+---
 
 # Git
 1. init : 해당 폴더를 git으로 초기화
@@ -78,7 +77,8 @@
 
 <br>
 <br>
-<br>
+
+---
 
 # mypy
 >공식문서 : https://github.com/python/mypy
@@ -87,5 +87,35 @@
 - 개발 환경에서 발생할 수 있는 문제를 사전에 예방할 수 있는 툴.
 - 쓰는 이유 : 파이썬은 동적언어임. 타입힌팅은 말그대로 힌트이기 때문에 강제성이 없음. 그때문에 mypy를 써야함.
 - fastapi에서 pydentic 모델이 있는데 왜 mypy를 써야함?
-    - mypy : 서버 열기 전 타입힌트와 코드가 맞는지 검사하고 아니면 오류 호출
-    - pydentic : 서버 실행중 클라이언트에게서 들어오는 데이터를 검증
+    - mypy : 서버 열기 전 타입힌트와 코드가 맞는지 검사하고 아니면 오류 호출 (정적인 검사)
+    - pydentic : 서버 실행중 클라이언트에게서 들어오는 데이터를 검증 (동적인 검사)
+- 타입 어노테이션을 주지않은 함수에는 타입을 검사하지 않음.
+
+
+>## mypy 설치 및 사용 방법
+1. poetry add --group=dev mypy==1.13.0 : 설치
+    - [tool.mypy]
+    - plugins = ["pydantic.mypy"] : mypy의 plugin이 있는 pydentic과 조화롭게 쓰기 위한 설정
+    - python_version = 3.13
+    - strict = true : 엄격한 설정을 통해 mypy를 강력하게 사용 가능
+2. mypy . : 실행
+
+
+## 기타
+- static(정적) : 실행하기 전에 결정
+```python
+a = "123
+print(a)
+```
+
+- dynamic(동적) : 실행 후 지정 혹은 변경 가능
+```python
+b = input()
+print(b)
+```
+
+- reveal_type : mypy의 print로 type을 리턴함
+```python
+a = 123
+reveal_type(a)
+```
